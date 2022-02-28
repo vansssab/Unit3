@@ -1,0 +1,18 @@
+#############
+Do Now 3.02
+#############
+In your Console
+Type the following code:
+def my_function():
+  print("THIS IS MY FUNCTION!")
+  
+In Your Notebook
+Respond to the following
+What does my_function do?
+  It prints "THIS IS MY FUNCTION!", but doesn't show until you call it.
+How would you call the function? Practice calling my_function and checking that it does what you expect it to.
+  my_function()
+How would you add arguments to my_function?
+  put something in the parenthesis after my_function
+  ex: def my_funtion(name)
+      my_function(user_name)
