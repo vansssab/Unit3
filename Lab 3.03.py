@@ -228,12 +228,7 @@ import random
 def shuffled_deck():
     basic_deck = list(range(2, 15)) * 4
     random.shuffle(basic_deck)
-
-#player names
-player1 = input("What is your name? ")
-print(f"Player 1 is {player1}.")
-player2 = input("What is your name? ")
-print(f"Player 2 is {player2}.")
+    return basic_deck
 
 #player turn
 def player_turn(name, deck):
@@ -242,6 +237,34 @@ def player_turn(name, deck):
 
     return card
 
+#compare scores
+def compare_scores(x, y):
+    if x > y:
+        print(f"{x} has the higher card.")
+        scores[0] += 1
+    elif x < y:
+        print(f"{y} has the higher card.")
+        scores[1] += 1
+    else:
+        print("War.")
+        compare_scores(x, y)
 
+
+#player names
+player1 = input("What is your name? ")
+print(f"Player 1 is {player1}.")
+player2 = input("What is your name? ")
+print(f"Player 2 is {player2}.")
+
+#extra variables
+cards = shuffled_deck()
+scores = [0, 0]
+
+#start program
+while len(cards) > 0:
+    player1_card = player_turn(player1, cards)
+    player2_card = player_turn(player2, cards)
+    compare_scores(player1_card, player2_card)
+    
 
 
