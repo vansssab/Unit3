@@ -228,6 +228,7 @@ import random
 def shuffled_deck():
     basic_deck = list(range(2, 15)) * 4
     random.shuffle(basic_deck)
+    
     return basic_deck
 
 #player turn
@@ -237,34 +238,57 @@ def player_turn(name, deck):
 
     return card
 
-#compare scores
-def compare_scores(x, y):
-    if x > y:
-        print(f"{x} has the higher card.")
-        scores[0] += 1
-    elif x < y:
-        print(f"{y} has the higher card.")
-        scores[1] += 1
-    else:
-        print("War.")
-        compare_scores(x, y)
-
-
 #player names
-player1 = input("What is your name? ")
+player1 = input("Enter your name: ")
 print(f"Player 1 is {player1}.")
-player2 = input("What is your name? ")
+player2 = input("Enter your name: ")
 print(f"Player 2 is {player2}.")
 
 #extra variables
-cards = shuffled_deck()
-scores = [0, 0]
+deck = shuffled_deck()
 
-#start program
-while len(cards) > 0:
-    player1_card = player_turn(player1, cards)
-    player2_card = player_turn(player2, cards)
-    compare_scores(player1_card, player2_card)
+#player scores
+player1_score = 0
+player2_score = 0
+points_at_stake = 2
+
+#player decks
+player1_deck = deck[:26]
+player2_deck = deck[26:]
+
+while len(player1_deck) > 0:
+    print(f"{player1}'s score: {player1_score}")
+    print(f"{player2}'s score: {player2_score}")
+    input("Press enter for a round." )
+    card1 = player_turn(player1, player1_deck)
+    card2 = player_turn(player2, player2_deck)
+    
+    if card1 > card2:
+        print(f"{player1} won the round and recieves {points_at_stake} points!")
+        player1_score += points_at_stake
+        points_at_stake = 2
+    elif card1 < card2:
+        print(f"{player2} won the round and recieves {points_at_stake} points!")
+        player2_score += points_at_stake
+        points_at_stake = 2
+    else: #tie
+        print("Time for War!")
+        points_at_stake += 2
+
+print("Game Over, no more cards")
+print(f"{player1} score: {player1_score}")
+print(f"{player2} score: {player2_score}")
+
+#determine winner
+if player1_score > player2_score:
+    print(f"{player1} wins!")
+elif player1_score < player2_score:
+    print(f"{player2} wins!")
+else:
+    print("It's a tie!")
+
+
+
     
 
 
