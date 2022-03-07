@@ -238,57 +238,72 @@ def player_turn(name, deck):
 
     return card
 
-#player names
-player1 = input("Enter your name: ")
-print(f"Player 1 is {player1}.")
-player2 = input("Enter your name: ")
-print(f"Player 2 is {player2}.")
+reset = True
 
-#extra variables
-deck = shuffled_deck()
+while reset:
+    #player names
+    player1 = input("Enter your name: ")
+    print(f"Player 1 is {player1}.")
+    player2 = input("Enter your name: ")
+    print(f"Player 2 is {player2}.")
 
-#player scores
-player1_score = 0
-player2_score = 0
-points_at_stake = 2
+    #extra variables
+    deck = shuffled_deck()
 
-#player decks
-player1_deck = deck[:26]
-player2_deck = deck[26:]
+    #player scores
+    player1_score = 0
+    player2_score = 0
+    points_at_stake = 2
 
-while len(player1_deck) > 0:
-    print(f"{player1}'s score: {player1_score}")
-    print(f"{player2}'s score: {player2_score}")
-    input("Press enter for a round." )
-    card1 = player_turn(player1, player1_deck)
-    card2 = player_turn(player2, player2_deck)
+    #player decks
+    player1_deck = deck[:26]
+    player2_deck = deck[26:]
+
+    while len(player1_deck) > 0:
+        print(f"{player1}'s score: {player1_score}")
+        print(f"{player2}'s score: {player2_score}")
+        input("Press enter for a round." )
+        card1 = player_turn(player1, player1_deck)
+        card2 = player_turn(player2, player2_deck)
+        
+        if card1 > card2:
+            print(f"{player1} won the round and recieves {points_at_stake} points!")
+            player1_score += points_at_stake
+            points_at_stake = 2
+        elif card1 < card2:
+            print(f"{player2} won the round and recieves {points_at_stake} points!")
+            player2_score += points_at_stake
+            points_at_stake = 2
+        else: #tie
+            print("Time for War!")
+            points_at_stake += 2
+
+    print("Game Over, no more cards")
+    print(f"{player1} score: {player1_score}")
+    print(f"{player2} score: {player2_score}")
+
+    #determine winner
+    if player1_score > player2_score:
+        print(f"{player1} wins!")
+    elif player1_score < player2_score:
+        print(f"{player2} wins!")
+    else:
+        print("It's a tie!")
     
-    if card1 > card2:
-        print(f"{player1} won the round and recieves {points_at_stake} points!")
-        player1_score += points_at_stake
-        points_at_stake = 2
-    elif card1 < card2:
-        print(f"{player2} won the round and recieves {points_at_stake} points!")
-        player2_score += points_at_stake
-        points_at_stake = 2
-    else: #tie
-        print("Time for War!")
-        points_at_stake += 2
+    #play again?
+    player_choice = input("Would you like to play again?(y/n) ")
 
-print("Game Over, no more cards")
-print(f"{player1} score: {player1_score}")
-print(f"{player2} score: {player2_score}")
-
-#determine winner
-if player1_score > player2_score:
-    print(f"{player1} wins!")
-elif player1_score < player2_score:
-    print(f"{player2} wins!")
-else:
-    print("It's a tie!")
+    if player_choice == 'y':
+        print("Here we go again!")
+    elif player_choice == 'n':
+        print("Play again next time!")
+        reset = False
+    else:
+        print("That is not an option. Try again.")
 
 
 
-    
+
+        
 
 
