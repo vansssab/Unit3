@@ -9,6 +9,7 @@ Aliasing
 1.  Will updating b affect a? Explain why or why not?
 a = [1, 2, 4]
 b = a
+    Yes because the aliased object (b) is mutable. 
 
 2.  Predict what my_list list will print out when this code is run. If you are not sure check the code by copying and running it.
 # input: a list of ints
@@ -20,8 +21,8 @@ def update_list(a_list):
 my_list = [1, 2, 3, 4, 5]
 update_list(my_list)
 
-Prediction:
-Actual: 
+Prediction: shows 100
+Actual: updates list to [1, 2, 3, 'yo', 5] but doesn't print it.
 
 Scope
 -----
@@ -126,3 +127,13 @@ prints the final value of my_num
 
 Confirm that the printed values match what you expected.
 '''
+var_1 = 'cat'
+var_2 = 'dog'
+def print_out_my_favorite(favorite_pet):
+    if favorite_pet == var_1:
+        print("My favorite pet is the cat.")
+    if favorite_pet == var_2:
+        print("My favorite pet is the dog.")
+    var_2 = "cat"
+print_out_my_favorite(var_1)
+print(var_2)
