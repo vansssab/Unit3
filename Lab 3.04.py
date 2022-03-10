@@ -143,13 +143,15 @@ def add2():
     global my_num
     my_num += 2
 
-def multiply_num(num, multiple):
-    pass
+def multiply_num(multiplyer):
+    global my_num
+    my_num *= multiplyer
 
 def add2_and_multiply(num):
     pass
 
 add2(my_num)
+multiply_num(my_num)
 print(my_num)
 
 
