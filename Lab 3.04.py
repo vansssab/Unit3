@@ -70,6 +70,9 @@ def print_out_my_favorite(favorite_pet):
 print_out_my_favorite(var_1)
 print(var_2)
 
+# The second var_2 is a loal variable inside the function, causing an area.
+    The solution is to put the var_2 = "cat" before the if favorite_pet == var_2.
+
 Problem 2
 ---------
 var_1 = 'cat'
@@ -86,6 +89,9 @@ def print_out_my_favorite(favorite_pet):
 print_out_my_favorite(var_1)
 print(var_1 + " " + var_2)
 
+#The var_1 and the var_2 in the function are local
+    The solution is the comment the two var's in the function out.
+
 Problem 3
 ---------
 var_1 = 'cat'
@@ -100,6 +106,8 @@ def print_out_my_favorite(favorite_pet):
 print_out_my_favorite(var_1)
 print(var_2)
 
+#nothing wrong with this.
+ 
 In script mode
 ---------------------
 Write a program using the following specifications
@@ -127,13 +135,24 @@ prints the final value of my_num
 
 Confirm that the printed values match what you expected.
 '''
-var_1 = 'cat'
-var_2 = 'dog'
-def print_out_my_favorite(favorite_pet):
-    if favorite_pet == var_1:
-        print("My favorite pet is the cat.")
-    if favorite_pet == var_2:
-        print("My favorite pet is the dog.")
-    var_2 = "cat"
-print_out_my_favorite(var_1)
-print(var_2)
+
+my_num = 10
+print(my_num)
+
+def add2():
+    global my_num
+    my_num += 2
+
+def multiply_num(num, multiple):
+    pass
+
+def add2_and_multiply(num):
+    pass
+
+add2(my_num)
+print(my_num)
+
+
+
+
+    
