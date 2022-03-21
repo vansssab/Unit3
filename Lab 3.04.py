@@ -148,10 +148,13 @@ def multiply_num(multiplyer):
     my_num *= multiplyer
 
 def add2_and_multiply(num):
-    pass
+    global my_num
+    my_num += 2
 
-add2(my_num)
-multiply_num(my_num)
+
+
+add2()
+multiply_num(4)
 print(my_num)
 
 
