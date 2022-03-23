@@ -136,26 +136,26 @@ prints the final value of my_num
 Confirm that the printed values match what you expected.
 '''
 
-my_num = 10
-print(my_num)
-
 def add2():
     global my_num
     my_num += 2
+    return my_num
 
 def multiply_num(multiplyer):
     global my_num
     my_num *= multiplyer
+    return my_num
 
-def add2_and_multiply(num):
+def add2_and_multiply(multiplyer):
     global my_num
     my_num += 2
+    my_num *= multiplyer
+    return my_num
 
-
-
-add2()
-multiply_num(4)
+my_num = 10
 print(my_num)
+print(add2_and_multiply(2))
+
 
 
 
