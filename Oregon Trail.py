@@ -25,13 +25,14 @@ miles = 2000
 current_day = 1
 current_month = 3
 
-
 #options
 def travel():
     import random
     global current_day
     global current_month
     global miles
+    global food
+    global food_eaten_each_day
     days_passed = random.randint(3, 7)
     current_day += days_passed
     if current_day > 31 and months_with_31_days:
@@ -40,9 +41,13 @@ def travel():
     elif current_day > 30:
         current_month += 1
         current_day = 1
-    miles -= random.randint(30, 60)
-    print(f"{days_passed} have passed. \n"
-    f"You have traveled {miles} miles. \n"
+    food_eaten_each_day *= days_passed
+    food -= food_eaten_each_day
+    miles_traveled = random.randint(30, 60)
+    miles -= miles_traveled
+    print(f"{days_passed} days have passed. \n"
+    f"You have consumed {food_eaten_each_day} lbs of food \n"
+    f"You have traveled {miles_traveled} miles. \n"
     f"The date is now {current_month}/{current_day}.")
 
 def rest(): 
@@ -50,22 +55,27 @@ def rest():
     global current_day
     global current_month
     global health
+    global food
+    global food_eaten_each_day
     days_passed2= random.randint(2, 5)
     current_day += days_passed2
-    if current_day > 31 and months_with_31_days:
+    if current_day == 31 and months_with_31_days:
         current_month += 1
         current_day = 1
     elif current_day > 30:
         current_month += 1
+        
         current_day = 1
     health += 1
     if health > 5:
         print("Your health can not exceed 5 levels.")
         health = 5
     else:
-        print("Your health has increased. \n"
-        f"Your health is now {health}")
-    print(f"{days_passed2} have passed. \n"
+        print("Your health has increased by 1.")
+    food_eaten_each_day *= days_passed2
+    food -= food_eaten_each_day
+    print(f"{days_passed2} days have passed. \n"
+    f"You have consumed {food_eaten_each_day} lbs of food \n"
     f"The date is now {current_month}/{current_day}.")
 
 def hunt():
@@ -73,6 +83,8 @@ def hunt():
     global food
     global current_day
     global current_month
+    global food
+    global food_eaten_each_day
     food += 100
     days_passed3= random.randint(2, 5)
     current_day += days_passed3
@@ -82,16 +94,18 @@ def hunt():
     elif current_day > 30:
         current_month += 1
         current_day = 1
-    print("You have gained 100 lbs of food. \n"
-    f"You now have {food} lbs of food. \n"
-    f"{days_passed3} have passed. \n"
+    food_eaten_each_day *= days_passed3
+    food -= food_eaten_each_day
+    print(f"{days_passed3} days have passed. \n"
+    "You have gained 100 lbs of food. \n"
+     f"You have consumed {food_eaten_each_day} lbs of food \n"
     f"The date is now {current_month}/{current_day}.")
     
 def status():
     print("Your stats are: \n"
     f"health = {health} health \n"
-    f"food = {food} lbs \n"
-    f"miles left = {miles} miles \n"
+    f"food = {food} lbs left\n"
+    f"miles left = {miles} miles left\n"
     f"current date = {current_month}/{current_day}")
 
 def help():
@@ -110,5 +124,24 @@ def quit():
 
 #main program
 while not current_month == 12 and not current_day == 31:
-    pass
+    food_eaten_each_day = 5
+    print(f"Today's date is {current_month}/{current_day}.")
+    choice = input("What would you like to do (travel, rest, hunt, status, help, quit)? ")
+    if choice == 'travel':
+        travel()
+    elif choice == 'rest':
+        rest()
+    elif choice == 'hunt':
+        hunt()
+    elif choice == 'status':
+        status()
+    elif choice == 'help':
+        help()
+    elif choice == 'quit':
+        quit()
+    else:
+        print("That is not an option. Try again.")
+
+
+
 
