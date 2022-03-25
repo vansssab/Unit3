@@ -24,6 +24,7 @@ months_with_31_days = [1, 3, 5, 7, 8, 10, 12]
 miles = 2000
 current_day = 1
 current_month = 3
+minus_health_days = 0
 
 #options
 def travel():
@@ -124,6 +125,7 @@ def quit():
 
 #main program
 while not current_month == 12 and not current_day == 31:
+    import random
     food_eaten_each_day = 5
     print(f"Today's date is {current_month}/{current_day}.")
     choice = input("What would you like to do (travel, rest, hunt, status, help, quit)? ")
@@ -141,6 +143,31 @@ while not current_month == 12 and not current_day == 31:
         quit()
     else:
         print("That is not an option. Try again.")
+    
+    #health decreases twice a month
+    while minus_health_days < 3:
+        health_decrease = random.randint(current_day[1, 30])
+        if current_day == health_decrease:
+            health_decline = random.randint[1, 4]
+            health -= health_decline
+            print(f"Your health has decreased by {health_decline}.")
+    
+    #if health = 0
+    if health <= 0:
+        print(f"Your health is {health}.")
+        print("You have died due to a heart attack.")
+        print("You lose. Game Over.")
+        break
+
+#game end
+if current_month == 12 and current_day == 31:
+    if miles <= 0:
+        print("You made it to Oregon City! \n"
+        "You win!")
+    elif miles > 0:
+        print("You have not made it to Oregon City in time. \n"
+        "Therefore, you got frostbite and died to hypothermia. \n"
+        "Game Over. You lose.")
 
 
 
