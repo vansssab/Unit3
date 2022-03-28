@@ -1,4 +1,7 @@
 #user's name
+from xxlimited import foo
+
+
 name = input("Enter your name. ")
 
 #instructions
@@ -24,7 +27,7 @@ months_with_31_days = [1, 3, 5, 7, 8, 10, 12]
 miles = 2000
 current_day = 1
 current_month = 3
-minus_health_days = 0
+minus_health_days = 2
 
 #options
 def travel():
@@ -38,10 +41,12 @@ def travel():
     current_day += days_passed
     if current_day > 31 and months_with_31_days:
         current_month += 1
-        current_day = 1
+        days_passed -= 1
+        current_day = days_passed
     elif current_day > 30:
         current_month += 1
-        current_day = 1
+        days_passed -= 1
+        current_day = days_passed
     food_eaten_each_day *= days_passed
     food -= food_eaten_each_day
     miles_traveled = random.randint(30, 60)
@@ -62,11 +67,12 @@ def rest():
     current_day += days_passed2
     if current_day == 31 and months_with_31_days:
         current_month += 1
-        current_day = 1
+        days_passed2 -= 1
+        current_day = days_passed2
     elif current_day > 30:
         current_month += 1
-        
-        current_day = 1
+        days_passed2 -= 1
+        current_day = days_passed2
     health += 1
     if health > 5:
         print("Your health can not exceed 5 levels.")
@@ -91,10 +97,12 @@ def hunt():
     current_day += days_passed3
     if current_day > 31 and months_with_31_days:
         current_month += 1
-        current_day = 1
+        days_passed3 -= 1
+        current_day = days_passed3
     elif current_day > 30:
         current_month += 1
-        current_day = 1
+        days_passed3 -= 1
+        current_day = days_passed3
     food_eaten_each_day *= days_passed3
     food -= food_eaten_each_day
     print(f"{days_passed3} days have passed. \n"
@@ -145,18 +153,27 @@ while not current_month == 12 and not current_day == 31:
         print("That is not an option. Try again.")
     
     #health decreases twice a month
-    while minus_health_days < 3:
-        health_decrease = random.randint(current_day[1, 30])
-        if current_day == health_decrease:
-            health_decline = random.randint[1, 4]
-            health -= health_decline
-            print(f"Your health has decreased by {health_decline}.")
+    if current_month + 1:
+        minus_health_days = 2
+        if minus_health_days > 0:
+            random_health_day = random.randint(1, 30)
+            if current_day == random_health_day:
+                health_decrease = random.randint(1, 3)
+                health -= health_decrease
+                minus_health_days -= 1
+                print(f"Your health has decreased by {health_decrease} because of the hardships of the travel.")
     
-    #if health = 0
+    #deaths
     if health <= 0:
         print(f"Your health is {health}.")
         print("You have died due to a heart attack.")
         print("You lose. Game Over.")
+        break
+
+    if food <= 0:
+        print(f"Your food storage is {food} lbs. \n"
+        "YOu have died due to starvation. \n"
+        "You lose. Game Over.")
         break
 
 #game end
