@@ -1,7 +1,4 @@
 #user's name
-from xxlimited import foo
-
-
 name = input("Enter your name. ")
 
 #instructions
